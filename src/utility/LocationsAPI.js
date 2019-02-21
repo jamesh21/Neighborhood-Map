@@ -8,7 +8,7 @@ let buildLocationsQuery = () => {
     const parameters = {
         query: "sights",
         ll: "47.608013, -122.335167",
-        limit: "20",
+        limit: "15",
         client_id: clientId,
         client_secret: clientSecret,
         v: version

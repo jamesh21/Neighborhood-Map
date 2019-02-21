@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import * as LocationsAPI from './utility/LocationsAPI'
 import Sidebar from './components/Sidebar'
+import { slide as Menu } from 'react-burger-menu'
 
 var map;
 var infoWindow;
