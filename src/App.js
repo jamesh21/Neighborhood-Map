@@ -68,28 +68,37 @@ class App extends Component {
     }
 
     getPhoto = (marker) => {
-        LocationsAPI.getPhoto(marker.id)
-            .then((photo) => {
-                // console.log(photo.prefix + "200x200" + photo.suffix)
-                // console.log(photo.prefix)
-                return photo.prefix + "200x200" + photo.suffix
-            })
-            .catch(error => {
-                console.log("Error " + error)
-            })
+        return new Promise((resolve, reject) => {
+            LocationsAPI.getPhoto(marker.id)
+                .then((photo) => {
+                    // console.log(photo.prefix + "200x200" + photo.suffix)
+                    // console.log(photo.prefix)
+                    resolve(photo.prefix + "200x200" + photo.suffix)
+                    // return photo.prefix + "200x200" + photo.suffix
+                })
+                .catch(error => {
+                    reject(new Error(error))
+                    // console.log("Error " + error)
+                })
+        })
+
     }
     // Adds info windows for each marker.
     populateInfoWindow = (marker) => {
         if (this.infoWindow.marker != marker) {
             this.infoWindow.marker = marker
-            const contentString = '<div>' +
-            '<h2>' + marker.title + '</h2>' +
-            '<h3>' + marker.address + '</h3></div>'
-            this.infoWindow.setContent(contentString)
+            let markerPhoto
+            this.getPhoto(marker)
+                .then((result) => {
+                    markerPhoto = result
+                    const contentString = `<div><h2>${marker.title}</h2><h3>${marker.address}</h3><img src="${markerPhoto}" alt="picture of ${marker.title}"></div>`
+                    this.infoWindow.setContent(contentString)
+                })
+                .catch(error => {
+                    console.log("Error " + error)
+                })
             this.infoWindow.open(this.map, marker)
             marker.setAnimation(window.google.maps.Animation.BOUNCE)
-            // this.getPhoto(marker)
-
             this.infoWindow.addListener('closeclick', () => {
                 marker.setAnimation(null)
             })
