@@ -15,7 +15,7 @@ html, body, ol {
     font-size: .6rem;
 }
 
-.container {
+.main-container {
     margin-top: 50px;
 }
 
@@ -74,7 +74,7 @@ html, body, ol {
 
 @media (min-width: 660px) and (max-width: 910px) {
 
-    .container {
+    .main-container {
         display: flex;
         flex-wrap: wrap;
     }
@@ -103,7 +103,6 @@ html, body, ol {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
-        /* padding: 5px; */
     }
 
     .listItem {
@@ -120,7 +119,7 @@ html, body, ol {
 
 @media screen and (max-width: 659px) {
 
-    .container {
+    .main-container {
         display: flex;
         flex-wrap: wrap;
     }

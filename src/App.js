@@ -48,6 +48,15 @@ class App extends Component {
         this.populateInfoWindow(this.state.markers.find(marker => marker.id === location.venue.id))
     }
 
+    listItemPressed = (keyPressed, location) => {
+        console.log(keyPressed)
+        if (keyPressed.key === 'Enter') {
+            console.log("enter pressed")
+            this.disableMarkerAnimation()
+            this.populateInfoWindow(this.state.markers.find(marker => marker.id === location.venue.id))
+        }
+    }
+
     // Renders all resources needed to show the map on the screen.
     renderMap = () => {
         window.initMap = this.initMap;
@@ -134,26 +143,28 @@ class App extends Component {
 
     render() {
         return (
-            <main>
-                <div className="navbar">
-                    <h1>Neighborhood Map</h1>
-                </div>
-                <div className="container">
-                    <div className="location-list-box">
+            <div className="app-container">
+                <header>
+                    <nav className="navbar">
+                        <h1>Neighborhood Map</h1>
+                    </nav>
+                </header>
+                <main className="main-container">
+                    <section className="location-list-box">
                         <Sidebar
                             locations = {this.state.locations}
                             markers = {this.state.markers}
                             updateMarkers = {this.updateMarkers}
                             listItemClicked = {this.listItemClicked}
+                            listItemPressed = {this.listItemPressed}
                         />
-                    </div>
-                    <div className="map-container">
+                    </section>
+                    <section className="map-container">
                         <div id="map"></div>
-                    </div>
-                </div>
-
-            </main>
-        );
+                    </section>
+                </main>
+            </div>
+        )
     }
 }
 

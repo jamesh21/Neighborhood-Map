@@ -45,6 +45,7 @@ class Sidebar extends Component {
                 <LocationListView
                     locations = {this.filterLocations()}
                     listItemClicked = {this.props.listItemClicked}
+                    listItemPressed = {this.props.listItemPressed}
                 />
             </div>
         )

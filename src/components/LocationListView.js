@@ -11,6 +11,7 @@ class LocationListView extends Component {
                         key={index}
                         location = {location}
                         listItemClicked = {this.props.listItemClicked}
+                        listItemPressed = {this.props.listItemPressed}
                     />
 
                 ))}
