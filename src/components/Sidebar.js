@@ -8,6 +8,7 @@ class Sidebar extends Component {
         query: ''
     }
 
+    // Used to set which markers are visible
     updateMap = (query) => {
         this.setState({ query: query })
         const {locations, markers, updateMarkers} = this.props
@@ -23,6 +24,7 @@ class Sidebar extends Component {
         updateMarkers(markers)
     }
 
+    // For filtering the entered location in the search box
     filterLocations = () => {
         const { locations } = this.props
         if (this.state.query.trim() !== "") {

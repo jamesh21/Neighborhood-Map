@@ -8,5 +8,4 @@ class LocationItem extends Component {
         )
     }
 }
-
 export default LocationItem

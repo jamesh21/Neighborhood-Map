@@ -23,11 +23,9 @@ html, body, ol {
     background: #fff;
     border: 1px solid #999;
     border-radius: 3px;
-    /* height: 100vh; */
     padding: 10px 10px 30px 10px;
     text-align: center;
     line-height: 35px;
-    /* width: 340px; */
     width: 23%;
     overflow-y: scroll;
 }

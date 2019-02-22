@@ -6,18 +6,15 @@ class LocationListView extends Component {
         return (
             <ol>
                 {locations.map((location, index) => (
-
                     <LocationItem
                         key={index}
                         location = {location}
                         listItemClicked = {this.props.listItemClicked}
                         listItemPressed = {this.props.listItemPressed}
                     />
-
                 ))}
             </ol>
         )
     }
 }
-
 export default LocationListView

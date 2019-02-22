@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import './App.css'
 import * as LocationsAPI from './utility/LocationsAPI'
 import Sidebar from './components/Sidebar'
-import { slide as Menu } from 'react-burger-menu'
 
-var map;
-var infoWindow;
+let map;
+let infoWindow;
 class App extends Component {
 
     state = {
@@ -36,6 +35,7 @@ class App extends Component {
         }
     }
 
+    // Used to disable the marker bounce animation
     disableMarkerAnimation = () => {
         const markers = this.state.markers
         for (let i = 0; i < markers.length; i++) {
@@ -43,15 +43,15 @@ class App extends Component {
         }
     }
 
+    // Listen to list item clicks to open corresponding marker.
     listItemClicked = (location) => {
         this.disableMarkerAnimation()
         this.populateInfoWindow(this.state.markers.find(marker => marker.id === location.venue.id))
     }
 
+    // Used when tabbing through the list item and by pressing enter it will open the marker.
     listItemPressed = (keyPressed, location) => {
-        console.log(keyPressed)
         if (keyPressed.key === 'Enter') {
-            console.log("enter pressed")
             this.disableMarkerAnimation()
             this.populateInfoWindow(this.state.markers.find(marker => marker.id === location.venue.id))
         }
@@ -69,29 +69,26 @@ class App extends Component {
         LocationsAPI.getAllLocations()
             .then((locations) => {
                 this.setState( {locations}, this.renderMap() )
-                console.log(locations)
         })
         .catch(error => {
             console.log("Error " + error)
         })
     }
 
+    // Promise which gets photos from the foursquare api
     getPhoto = (marker) => {
         return new Promise((resolve, reject) => {
             LocationsAPI.getPhoto(marker.id)
                 .then((photo) => {
-                    // console.log(photo.prefix + "200x200" + photo.suffix)
-                    // console.log(photo.prefix)
                     resolve(photo.prefix + "200x200" + photo.suffix)
-                    // return photo.prefix + "200x200" + photo.suffix
                 })
                 .catch(error => {
                     reject(new Error(error))
-                    // console.log("Error " + error)
                 })
         })
 
     }
+
     // Adds info windows for each marker.
     populateInfoWindow = (marker) => {
         if (this.infoWindow.marker != marker) {
