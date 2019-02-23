@@ -35,7 +35,7 @@ export const getAllLocations = () =>
             return response.data.response.groups[0].items
         })
         .catch(error => {
-            console.log("Error " + error)
+            alert("Error getting data from foursquare" )
         })
 
 // Retrieves the photos for the specific location
@@ -45,5 +45,5 @@ export const getPhoto = (locationId) =>
             return response.data.response.photos.items[0]
         })
         .catch(error => {
-            console.log("Error " + error)
+            alert("Error getting data from foursquare" )
         })

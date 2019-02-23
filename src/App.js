@@ -83,7 +83,7 @@ class App extends Component {
                     resolve(photo.prefix + "200x200" + photo.suffix)
                 })
                 .catch(error => {
-                    reject(new Error(error))
+                    reject(error);
                 })
         })
 
@@ -172,7 +172,11 @@ function loadScript (url) {
     script.src = url
     script.async = true
     script.defer = true
+    script.onerror = function () {
+        alert("Error loading Map, Please try again!")
+    }
     index.parentNode.insertBefore(script, index)
+
 }
 
 export default App;

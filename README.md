@@ -10,7 +10,9 @@ This project was built using react. It also uses Google Maps API and Four Square
 
 
 # Quickstart
-
+To install Dependencies run npm install
+<br/>
+<br/>
 In order to run the application, run "npm start" while inside the project directory. After running the app it should then open a webpage on localhost port 3000.
 <br/>
 <br/>
